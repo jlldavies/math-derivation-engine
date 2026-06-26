@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "integral-explainer"
+version = "0.0.1"
+description = "Method-explanation engine for hard and divergent integrals"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "James", email = "james@handleport.com" }]
+dependencies = [
+    "sympy>=1.12",
+    "mpmath>=1.3",
+    "latex2mathml>=3.77",   # explain step: LaTeX -> self-contained MathML (no JS/CDN)
+]
+
+[project.optional-dependencies]
+# Certified arbitrary-precision numerics (Arb backend) for M2+
+rigorous = ["python-flint>=0.6"]
+# Notebook UI for the render -> test -> refine loop
+notebook = ["jupyterlab>=4"]
+dev = ["pytest>=8"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+# COVERAGE IS THE DEFAULT: plain `pytest` runs EVERYTHING, including the slow gate suites. Speed is
+# an EXPLICIT opt-in for iteration only — `pytest -m "not slow"` for a fast subset, or run a single
+# file / `-k pattern` for just the path you changed. Never let the default silently skip coverage
+# (that hides failures behind efficiency). Record every FULL run via `python tests/run_full_suite.py`.
+markers = [
+    "slow: heavy gate suites (167 integral-table gates, paper gates). Run by default; exclude for a fast iteration subset with `pytest -m 'not slow'`.",
+]

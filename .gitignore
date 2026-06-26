@@ -1,0 +1,44 @@
+# --- Python ---
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+build/
+dist/
+.ipynb_checkpoints/
+.pytest_cache/
+.DS_Store
+
+# --- third-party papers (copyright) — NOT redistributed in this public repo ---
+tests/papers/local/
+corpus/
+
+# --- Blitz sub-project (separate, kept local) ---
+examples/blitz_*.py
+examples/subleading_*.py
+examples/tensor_space_full.json
+
+# --- generated example/demo output (HTML traces, JSON dumps) ---
+examples/*_output/
+**/agent_output/
+
+# --- backups / editor temp / one-off scratch ---
+archive/
+*.tmp.*
+_verify_pde.py
+gate_*.py
+gate_exp_results.json
+
+# --- internal planning / AI-dev docs (kept local) ---
+CLAUDE.md
+DESIGN.md
+DESIGN.md.*
+PLAN.md
+ORCHESTRATION.md
+TODO.md
+
+# examples that depend on the (excluded) Blitz sub-project
+examples/explain_forms.py
+examples/find_gaps.py
+examples/gr_sweep.py
